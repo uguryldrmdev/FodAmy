@@ -1,4 +1,4 @@
-package com.mobillium.fodamy.ui.base
+package com.mobillium.fodamy.core.base
 
 import android.os.Bundle
 import android.view.LayoutInflater
