@@ -1,5 +1,23 @@
 <resources>
     <string name="app_name">FodAmy</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!-- Intro -->
+    <string name="sliderItem1Title">Fodamy\'e Hoşgeldiniz</string>
+    <string name="sliderItem2Title">Arama ve Filtreleme</string>
+    <string name="sliderItem3Title">Beğenme, Tarif Defteri Oluşturma ve Takip Etme</string>
+    <string name="sliderItem4Title">Tarif Ekleme</string>
+
+    <string name="sliderItem1Desc">Binlerce çeşit enfes yemek tarifleri bulabileceğiniz Fodamy\'e
+        hoşgeldiniz.</string>
+    <string name="sliderItem2Desc">Arama ve filtreleme özellikleri sayesinde aradığınız tariflere
+        kolayca erişebilirsiniz</string>
+    <string name="sliderItem3Desc">Tarifleri beğenerek veya oluşturmuş olduğunuz
+        tarif defterlerinize ekleyerek profilinizi zenginleştirebilirsiniz. Ayrıca kullanıcıları
+        takibe alarak ekledikleri tariflere kolayca erişebilirsiniz.</string>
+    <string name="sliderItem4Desc">Takip ekleyip paylaşarak kullanıcıların beğenisine sunabilir,
+        başarılı kullanıcılar listesine girebilirsiniz.</string>
+
+    <string name="next">İlerle</string>
+    <string name="start">Başla!</string>
+
 </resources>

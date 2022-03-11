@@ -16,5 +16,6 @@ object AppModule {
     @Provides
     @Named("testString1")
     fun provideTestString() = "Deneme olarak inject edilecek string"
-    //...
+
+
 }

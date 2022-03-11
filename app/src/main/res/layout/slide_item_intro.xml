@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/imageViewSlideIcon"
+            android:layout_width="@dimen/introIconSize"
+            android:layout_height="@dimen/introIconSize"
+            android:layout_marginTop="@dimen/longMarginXXLarge"
+            android:scaleType="center"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:src="@drawable/introimagefirst" />
+
+        <TextView
+            android:id="@+id/textViewSlideDesc"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/marginMedium"
+            android:layout_marginBottom="@dimen/marginMedium"
+            android:fontFamily="@font/nunito_sans_semibold"
+            android:gravity="center"
+            android:text="@string/sliderItem1Desc"
+            android:textColor="@color/raven"
+            android:textSize="@dimen/textXLarge"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/imageViewSlideIcon"
+            app:layout_constraintStart_toStartOf="@+id/imageViewSlideIcon"
+            app:layout_constraintTop_toBottomOf="@+id/textViewSlideTitle"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <TextView
+            android:id="@+id/textViewSlideTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/longMarginMedium"
+            android:fontFamily="@font/nunito_sans_bold"
+            android:gravity="center"
+            android:text="Welcome to Fodamy Network!"
+            android:textColor="@color/cinder"
+            android:textSize="@dimen/textXXLarge"
+            app:layout_constraintEnd_toEndOf="@+id/imageViewSlideIcon"
+            app:layout_constraintStart_toStartOf="@+id/imageViewSlideIcon"
+            app:layout_constraintTop_toBottomOf="@+id/imageViewSlideIcon" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
