@@ -5,6 +5,7 @@
 
 
     <color name="red">#EC381C</color>
+    <color name="redinactive">#4DEC381C</color>
 
     <color name="cinder">#212529</color>
     <color name="raven">#6C757D</color>

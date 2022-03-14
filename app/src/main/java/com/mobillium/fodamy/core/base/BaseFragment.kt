@@ -10,7 +10,7 @@ import androidx.viewbinding.ViewBinding
 
 abstract class BaseFragment<VM: ViewModel, B: ViewBinding>: Fragment() {
 
-    private lateinit var binding: B
+    protected lateinit var binding: B
     private lateinit var viewModel: VM
 
     override fun onCreateView(
