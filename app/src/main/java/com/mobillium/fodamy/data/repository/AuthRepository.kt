@@ -13,4 +13,12 @@ class AuthRepository(
     ) = safeApiCall {
         api.login(email,password)
     }
+
+    suspend fun signUp(
+        username: String,
+        email: String,
+        password: String,
+    ) = safeApiCall {
+        api.signUp(username,email,password)
+    }
 }

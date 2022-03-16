@@ -1,6 +1,6 @@
 package com.mobillium.fodamy.data.network
 
-import com.mobillium.fodamy.data.responses.LoginResponse
+import com.mobillium.fodamy.data.responses.AuthResponse
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
 import retrofit2.http.POST
@@ -12,5 +12,13 @@ interface AuthApi {
     suspend fun login(
         @Field("username") email:String,
         @Field("password") password:String
-    ):LoginResponse
+    ):AuthResponse
+
+    @FormUrlEncoded
+    @POST("api/auth/register")
+    suspend fun signUp(
+        @Field("username") username:String,
+        @Field("email") email:String,
+        @Field("password") password:String
+    ):AuthResponse
 }
