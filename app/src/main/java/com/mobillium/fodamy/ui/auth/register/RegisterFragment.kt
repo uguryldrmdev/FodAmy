@@ -14,10 +14,8 @@ import com.mobillium.fodamy.data.network.AuthApi
 import com.mobillium.fodamy.data.network.Resource
 import com.mobillium.fodamy.data.preferences.MyPreferences
 import com.mobillium.fodamy.data.repository.AuthRepository
-import com.mobillium.fodamy.databinding.FragmentLoginBinding
 import com.mobillium.fodamy.databinding.FragmentRegisterBinding
 import com.mobillium.fodamy.ui.auth.AuthViewModel
-import com.mobillium.fodamy.ui.auth.login.LoginFragmentDirections
 import com.mobillium.fodamy.ui.main.MainActivity
 import com.mobillium.fodamy.ui.startNewActivity
 
@@ -39,7 +37,6 @@ class RegisterFragment: BaseFragment<AuthViewModel, FragmentRegisterBinding, Aut
     }
 
     private fun initialize(){
-        loginResponse()
         setClicks()
     }
 
@@ -51,28 +48,11 @@ class RegisterFragment: BaseFragment<AuthViewModel, FragmentRegisterBinding, Aut
             viewModel.login(email,password)
         }
         binding.textViewHaveAccount.setOnClickListener {
-            launchLogin()
+            // launchLogin()
         }
         binding.textViewLogin.setOnClickListener {
-            launchLogin()
+           // launchLogin()
         }
     }
-    private fun launchLogin(){
-        findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToRegisterFragment())
-    }
-    private fun loginResponse(){
-        viewModel.loginResponse.observe(viewLifecycleOwner, Observer {
-            when(it){
-                is Resource.Success -> {
-                    MyPreferences(requireContext()).token = it.value.token
-                    Toast.makeText(requireContext(), it.value.toString(), Toast.LENGTH_LONG).show()
-                    requireActivity().startNewActivity(MainActivity::class.java)
-                    //todo will edit.
-                }
-                is Resource.Failure -> {
-                    Toast.makeText(requireContext(), "Geçersiz Giriş", Toast.LENGTH_SHORT).show()
-                }
-            }
-        })
-    }
+    
 }
