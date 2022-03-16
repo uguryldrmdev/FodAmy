@@ -20,4 +20,17 @@
     <string name="next">İlerle</string>
     <string name="start">Başla!</string>
 
+
+    <!-- Auth -->
+
+    <string name="loginTitle">Giriş Yap</string>
+    <string name="emailHint">E-mail Adresi</string>
+    <string name="passwordHint">Şifre</string>
+    <string name="forgotPassword">Şifrenizi mi unuttunuz?</string>
+    <string name="haventAccount">Hesabın mı yok?\u0020</string>
+    <string name="haveAccount">Hesabın var mı?\u0020</string>
+    <string name="signUp">Üye Ol</string>
+    <string name="userName">Kullanıcı Adı</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

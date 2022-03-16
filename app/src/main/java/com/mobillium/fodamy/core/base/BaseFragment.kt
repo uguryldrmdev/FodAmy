@@ -6,12 +6,15 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import androidx.viewbinding.ViewBinding
+import com.mobillium.fodamy.data.network.RemoteDataSource
 
-abstract class BaseFragment<VM: ViewModel, B: ViewBinding>: Fragment() {
+abstract class BaseFragment<VM: ViewModel, B: ViewBinding, R:BaseRepository>: Fragment() {
 
     protected lateinit var binding: B
-    private lateinit var viewModel: VM
+    lateinit var viewModel: VM
+    protected val remoteDataSource = RemoteDataSource()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -19,6 +22,8 @@ abstract class BaseFragment<VM: ViewModel, B: ViewBinding>: Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = getFragmentBinding(inflater,container)
+        val factory = ViewModelFactory(getFragmentRepository())
+        viewModel = ViewModelProvider(this,factory).get(getViewModel())
         return binding.root
     }
 
@@ -26,5 +31,5 @@ abstract class BaseFragment<VM: ViewModel, B: ViewBinding>: Fragment() {
 
     abstract fun getFragmentBinding(inflater: LayoutInflater,container: ViewGroup?): B
 
-    //abstract fun getFragmentRepository():R
+    abstract fun getFragmentRepository():R
 }

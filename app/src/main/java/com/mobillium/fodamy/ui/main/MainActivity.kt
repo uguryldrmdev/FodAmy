@@ -14,21 +14,14 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
 
-    @Inject
-    @Named("testString1")
-    lateinit var testString: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setBinding()
-        showTestString()
     }
     private fun setBinding(){
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
     }
 
-    private fun showTestString(){
-        Toast.makeText(this, testString,Toast.LENGTH_SHORT).show()
-    }
 }

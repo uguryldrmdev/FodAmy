@@ -45,7 +45,8 @@
             android:orientation="horizontal"
             app:layout_constraintBottom_toTopOf="@id/buttonNext"
             app:layout_constraintEnd_toEndOf="parent" />
-        <Button
+
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/buttonNext"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -56,6 +57,7 @@
             android:paddingBottom="@dimen/paddingLarge"
             android:paddingTop="@dimen/paddingLarge"
             android:textSize="@dimen/textXLarge"
+            android:letterSpacing="0.025"
             android:textAllCaps="false"
             android:textColor="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"
