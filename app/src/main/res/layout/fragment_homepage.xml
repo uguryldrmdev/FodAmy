@@ -15,22 +15,22 @@
 
 
         <TextView
-            android:id="@+id/textView"
+            android:id="@+id/text_view_homepage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Home"
+            android:text="@string/home_page_title"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/button"
+            android:id="@+id/button_auth"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Giriş Yap"
+            android:text="@string/login_title"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView" />
+            app:layout_constraintTop_toBottomOf="@+id/text_view_homepage" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

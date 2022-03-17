@@ -18,9 +18,7 @@ import com.mobillium.fodamy.R
 import com.mobillium.fodamy.databinding.FragmentIntroBinding
 import com.mobillium.fodamy.data.model.IntroSlideModel
 import com.mobillium.fodamy.data.preferences.MyPreferences
-import com.mobillium.fodamy.ui.main.MainActivity
 import com.mobillium.fodamy.ui.splash.intro.adapter.IntroSliderAdapter
-import com.mobillium.fodamy.ui.startNewActivity
 import kotlinx.coroutines.launch
 
 
@@ -54,8 +52,8 @@ class IntroFragment : Fragment() {
 
     private fun setNextButtonClick(){
         binding.buttonNext.setOnClickListener {
-            if (binding.introSlider.currentItem + 1 < mItemsAdapter.itemCount){
-                binding.introSlider.currentItem +=1
+            if (binding.viewPagerIntroSlider.currentItem + 1 < mItemsAdapter.itemCount){
+                binding.viewPagerIntroSlider.currentItem +=1
             }else{
                 launchHomepage()
             }
@@ -70,7 +68,7 @@ class IntroFragment : Fragment() {
     private fun launchHomepage(){
         lifecycleScope.launch {
             MyPreferences(requireContext()).isAppOpened = true
-            requireActivity().startNewActivity(MainActivity::class.java)
+            findNavController().navigate(IntroFragmentDirections.actionIntroFragmentToHomepageFragment())
         }
     }
 
@@ -81,7 +79,7 @@ class IntroFragment : Fragment() {
     }
 
     private fun initializeViewPager(){
-        binding.introSlider.apply {
+        binding.viewPagerIntroSlider.apply {
 
             IntroSliderAdapter().also {
                 mItemsAdapter = it
@@ -96,10 +94,10 @@ class IntroFragment : Fragment() {
 
     private fun getIntroSlideItems(): ArrayList<IntroSlideModel>{
         val introItemList= ArrayList<IntroSlideModel>()
-        val item1 = IntroSlideModel(getString(R.string.sliderItem1Title), getString(R.string.sliderItem1Desc),R.drawable.introimagefirst)
-        val item2 = IntroSlideModel(getString(R.string.sliderItem2Title), getString(R.string.sliderItem2Desc),R.drawable.introimagesecond)
-        val item3 = IntroSlideModel(getString(R.string.sliderItem3Title), getString(R.string.sliderItem3Desc),R.drawable.introimagethird)
-        val item4 = IntroSlideModel(getString(R.string.sliderItem4Title), getString(R.string.sliderItem4Desc),R.drawable.introimagefourth)
+        val item1 = IntroSlideModel(getString(R.string.slider_item_title_1), getString(R.string.slider_item_desc_1),R.drawable.introimagefirst)
+        val item2 = IntroSlideModel(getString(R.string.slider_item_title_2), getString(R.string.slider_item_desc_2),R.drawable.introimagesecond)
+        val item3 = IntroSlideModel(getString(R.string.slider_item_title_3), getString(R.string.slider_item_desc_3),R.drawable.introimagethird)
+        val item4 = IntroSlideModel(getString(R.string.slider_item_title_4), getString(R.string.slider_item_desc_4),R.drawable.introimagefourth)
         introItemList.add(item1)
         introItemList.add(item2)
         introItemList.add(item3)
@@ -111,7 +109,7 @@ class IntroFragment : Fragment() {
     private fun initializeIndicators(){
         setupIndicators()
         setCurrentIndicator(0)
-        binding.introSlider.registerOnPageChangeCallback(object :
+        binding.viewPagerIntroSlider.registerOnPageChangeCallback(object :
             ViewPager2.OnPageChangeCallback(){
             override fun onPageSelected(position: Int) {
                 super.onPageSelected(position)
@@ -137,13 +135,13 @@ class IntroFragment : Fragment() {
                 this?.let { setImageDrawableExt(it,R.drawable.indicator_inactive,context) }
                 this?.layoutParams = layoutParams
             }
-            binding.indicatorsContainer.addView(indicators[i])
+            binding.containerIndicators.addView(indicators[i])
         }
     }
     private fun setCurrentIndicator(index: Int){
-        val childCount = binding.indicatorsContainer.childCount
+        val childCount = binding.containerIndicators.childCount
         for (i in 0 until childCount) {
-            val imageView = binding.indicatorsContainer[i] as ImageView
+            val imageView = binding.containerIndicators[i] as ImageView
             if (i == index){
                 setImageDrawableExt(imageView,R.drawable.indicator_active,context)
             }

@@ -2,8 +2,8 @@
 <shape xmlns:android="http://schemas.android.com/apk/res/android"
     android:shape="oval">
 
-    <solid android:color="@color/redinactive"/>
+    <solid android:color="@color/red_inactive"/>
     <size
-        android:height="@dimen/introIndicatorsInActive"
-        android:width="@dimen/introIndicatorsInActive"/>
+        android:height="@dimen/intro_indicator_inactive_size"
+        android:width="@dimen/intro_indicator_inactive_size"/>
 </shape>

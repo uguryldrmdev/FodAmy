@@ -7,7 +7,7 @@
 
 
     <color name="red">#EC381C</color>
-    <color name="redinactive">#4DEC381C</color>
+    <color name="red_inactive">#4DEC381C</color>
 
     <color name="cinder">#212529</color>
     <color name="raven">#6C757D</color>
@@ -18,5 +18,5 @@
     <color name="heater">#ADB5BD</color>
     <color name="zircon">#DEE2E6</color>
 
-    <color name="mtrl_textinput_default_box_stroke_color" tools:override="true">@color/heater</color>
+    <color name="stroke_heater" tools:override="true">@color/heater</color>
 </resources>

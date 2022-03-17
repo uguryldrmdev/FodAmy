@@ -1,32 +1,62 @@
 package com.mobillium.fodamy.data.responses
 
+import com.google.gson.annotations.SerializedName
+
 data class User(
-    val birthday: Any,
-    val cover: Any,
-    val cover_image: Any,
-    val definition: Any,
+    @SerializedName("birthday")
+    val birthday: String,
+    @SerializedName("cover")
+    val cover: String,
+    @SerializedName("cover_image")
+    val coverImage:String,
+    @SerializedName("definition")
+    val definition: String,
+    @SerializedName("email")
     val email: String,
-    val facebook_url: Any,
-    val favorites_count: Int,
-    val followed_count: Int,
-    val following_count: Int,
-    val gender: Any,
+    @SerializedName("facebook_url")
+    val facebookUrl: String,
+    @SerializedName("favorites_count")
+    val favoritesCount: Int,
+    @SerializedName("followed_count")
+    val followedCount: Int,
+    @SerializedName("following_count")
+    val followingCount: Int,
+    @SerializedName("gender")
+    val gender: String,
+    @SerializedName("id")
     val id: Int,
-    val image: Any,
-    val instagram_url: Any,
-    val is_banned: Int,
-    val is_following: Boolean,
-    val is_top_user_choice: Boolean,
-    val is_trusted: Int,
+    @SerializedName("image")
+    val image: String,
+    @SerializedName("instagram_url")
+    val intagramUrl: String,
+    @SerializedName("is_banned")
+    val isBanned: Int,
+    @SerializedName("is_following")
+    val isFollowing: Boolean,
+    @SerializedName("is_top_user_choice")
+    val isTopUserChoice: Boolean,
+    @SerializedName("is_trusted")
+    val isTrusted: Int,
+    @SerializedName("language")
     val language: String,
-    val likes_count: Int,
-    val name: Any,
-    val phone: Any,
-    val recipe_count: Int,
-    val surname: Any,
-    val tckn: Any,
-    val top_user: Any,
-    val twitter_url: Any,
+    @SerializedName("likes_count")
+    val likesCount: Int,
+    @SerializedName("name")
+    val name: String,
+    @SerializedName("phone")
+    val phone: String,
+    @SerializedName("recipe_count")
+    val recipeCount: Int,
+    @SerializedName("surname")
+    val surname: String,
+    @SerializedName("tckn")
+    val tckn: String,
+    @SerializedName("top_user")
+    val topUser: Any,
+    @SerializedName("twitter_url")
+    val twitterUrl: String,
+    @SerializedName("username")
     val username: String,
-    val youtube_url: Any
+    @SerializedName("youtube_url")
+    val youtubeUrl: String
 )

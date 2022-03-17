@@ -29,9 +29,9 @@ class IntroSliderAdapter :
     }
     class MyViewHolder(private val view: View): RecyclerView.ViewHolder(view){
 
-        var itemTitle: TextView = view.textViewSlideTitle
-        var itemDescription: TextView = view.textViewSlideDesc
-        var itemImage: ImageView = view.imageViewSlideIcon
+        var itemTitle: TextView = view.text_view_slide_title
+        var itemDescription: TextView = view.text_view_slide_desc
+        var itemImage: ImageView = view.image_view_slide_icon
         fun bind(item: IntroSlideModel) {
             itemTitle.text = item.title
             itemDescription.text = item.description

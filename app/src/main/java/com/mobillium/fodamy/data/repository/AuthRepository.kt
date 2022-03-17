@@ -1,24 +1,31 @@
 package com.mobillium.fodamy.data.repository
 
+import android.content.Context
 import com.mobillium.fodamy.core.base.BaseRepository
-import com.mobillium.fodamy.data.network.AuthApi
+import com.mobillium.fodamy.data.network.AuthService
+import com.mobillium.fodamy.data.preferences.MyPreferences
+import dagger.hilt.android.qualifiers.ApplicationContext
+import javax.inject.Inject
 
-class AuthRepository(
-    private val api: AuthApi
-) : BaseRepository() {
+class AuthRepository @Inject constructor(
+    private val service: AuthService,
+) : BaseRepository(service) {
 
     suspend fun login(
         email: String,
-        password: String,
+        password: String
     ) = safeApiCall {
-        api.login(email,password)
+        service.login(email, password)
     }
-
     suspend fun signUp(
         username: String,
         email: String,
         password: String,
     ) = safeApiCall {
-        api.signUp(username,email,password)
+        service.signUp(username,email,password)
     }
+    suspend fun saveToken(token: String,context: Context) {
+       MyPreferences(context).saveToken(token)
+    }
+
 }
