@@ -1,25 +1,34 @@
 package com.mobillium.fodamy.core.base
 
-import android.app.Application
-import android.content.Context
-import android.widget.Toast
 import androidx.lifecycle.ViewModel
-import com.mobillium.fodamy.Fodamy
-import com.mobillium.fodamy.data.network.SafeApiCall
-import dagger.hilt.android.AndroidEntryPoint
-import dagger.hilt.android.internal.modules.ApplicationContextModule
-import dagger.hilt.android.qualifiers.ApplicationContext
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
+import androidx.lifecycle.viewModelScope
+import androidx.navigation.NavDirections
+import kotlinx.coroutines.channels.Channel
+import kotlinx.coroutines.flow.receiveAsFlow
+import kotlinx.coroutines.launch
 import okhttp3.ResponseBody
-import javax.inject.Inject
-import javax.inject.Named
 
-abstract class BaseViewModel(
-    private val repository: BaseRepository,
-) : ViewModel() {
+abstract class BaseViewModel() : ViewModel() {
 
-    fun showError(networkError: Boolean, errorCode: Int?, errorBody:ResponseBody?){
-      //...
+    private val _channel = Channel<BaseViewEvent> {}
+    val eventFlow = _channel.receiveAsFlow()
+
+    private fun sendEvent(event: BaseViewEvent) {
+        viewModelScope.launch {
+            _channel.send(event)
+        }
+    }
+
+    fun navigate(direction: NavDirections) {
+        sendEvent(BaseViewEvent.Navigate(direction))
+    }
+
+    fun showError(errorBody: ResponseBody){
+        sendEvent(BaseViewEvent.ShowError(errorBody))
+    }
+
+    fun showLoading(){
+        sendEvent(BaseViewEvent.ShowLoading)
     }
 }
+

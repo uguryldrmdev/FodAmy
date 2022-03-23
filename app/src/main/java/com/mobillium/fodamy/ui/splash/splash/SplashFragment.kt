@@ -5,20 +5,25 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import com.mobillium.fodamy.R
 import com.mobillium.fodamy.core.base.BaseFragment
 import com.mobillium.fodamy.core.base.BaseViewModel
-import com.mobillium.fodamy.data.preferences.MyPreferences
+import com.mobillium.fodamy.data.preferences.PreferencesManager
 import com.mobillium.fodamy.databinding.FragmentSplashBinding
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
+@AndroidEntryPoint
+class SplashFragment
+    : BaseFragment<FragmentSplashBinding,SplashViewModel>(R.layout.fragment_splash) {
 
-class SplashFragment : BaseFragment<BaseViewModel,FragmentSplashBinding>(
-    FragmentSplashBinding::inflate
-) {
-
+    @Inject
+    lateinit var preferencesManager:PreferencesManager
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         launchApp()
@@ -27,13 +32,14 @@ class SplashFragment : BaseFragment<BaseViewModel,FragmentSplashBinding>(
     private fun launchApp(){
         lifecycleScope.launch {
             delay(2000)
-            when(MyPreferences(requireContext()).isAppOpened){
-                false ->  findNavController().navigate(SplashFragmentDirections.actionSplashFragmentToIntroFragment())
+            when(preferencesManager.isAppOpened){
+                false ->  viewModel.navigate(SplashFragmentDirections.actionSplashFragmentToIntroFragment())
                 true -> {
-                    findNavController().navigate(SplashFragmentDirections.actionSplashFragmentToHomepageFragment())
+                    viewModel.navigate(SplashFragmentDirections.actionSplashFragmentToHomepageFragment())
                 }
+
             }
+            Toast.makeText(requireContext(), preferencesManager.token, Toast.LENGTH_SHORT).show()
         }
     }
-
 }

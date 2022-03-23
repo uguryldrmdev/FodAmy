@@ -10,3 +10,13 @@ fun View.visible(isVisible: Boolean){
 fun View.enable(enabled: Boolean){
     isEnabled = enabled
 }
+
+fun View.snackbar(message: String, action: (() -> Unit)? = null) {
+    val snackbar = Snackbar.make(this, message, Snackbar.LENGTH_LONG)
+    action?.let {
+        snackbar.setAction("Retry") {
+            it()
+        }
+    }
+    snackbar.show()
+}

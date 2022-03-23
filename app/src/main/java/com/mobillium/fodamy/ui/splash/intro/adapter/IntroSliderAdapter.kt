@@ -32,7 +32,6 @@ class IntroSliderAdapter :
         var itemTitle: TextView = binding.textViewSlideTitle
         var itemDescription: TextView = binding.textViewSlideDesc
         var itemImage: ImageView = binding.imageViewSlideIcon
-
         fun bind(item: IntroSlideModel) {
             itemTitle.text = item.title
             itemDescription.text = item.description

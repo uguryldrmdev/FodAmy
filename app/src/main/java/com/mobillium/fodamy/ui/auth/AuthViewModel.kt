@@ -1,65 +1,82 @@
 package com.mobillium.fodamy.ui.auth
 
-import android.content.Context
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.mobillium.fodamy.Fodamy
 import com.mobillium.fodamy.core.base.BaseViewModel
 import com.mobillium.fodamy.data.network.Resource
 import com.mobillium.fodamy.data.repository.AuthRepository
-import com.mobillium.fodamy.data.responses.AuthResponse
+import com.mobillium.fodamy.ui.auth.login.LoginFragmentDirections
+import com.mobillium.fodamy.ui.auth.register.RegisterFragmentDirections
 import dagger.hilt.android.lifecycle.HiltViewModel
-import dagger.hilt.android.qualifiers.ApplicationContext
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class AuthViewModel @Inject constructor(
-    private val repository: AuthRepository,
-) : BaseViewModel(repository) {
+    private val repository: AuthRepository
+) : BaseViewModel() {
 
-    private val _loginResponse: MutableLiveData<AuthResponse> = MutableLiveData()
-    private val _signUpResponse : MutableLiveData<AuthResponse> = MutableLiveData()
+    val username = MutableLiveData("")
+    val email = MutableLiveData("")
+    val password = MutableLiveData("")
 
-    val loginResponse: LiveData<AuthResponse>
-        get() = _loginResponse
 
-    val signUpResponse: LiveData<AuthResponse>
-        get() = _signUpResponse
-
-    //
-    suspend fun saveToken(token: String, context: Context) {
-        repository.saveToken(token, context)
+    fun isValid(): Boolean {
+        //...
+        return true
     }
 
-    suspend fun login(email: String,password: String){
-        when(val response = repository.login(email,password)){
-            is Resource.Success->{
-                _loginResponse.postValue(response.value!!)
-            }
-            is Resource.Failure->{
-                showError(response.networkError,response.errorCode,response.errorBody)
-            }
-            is Resource.Loading->{
-                //...
+    fun login() =
+        viewModelScope.launch {
+            if (isValid()) {
+                email.value?.let { emailValue ->
+                    password.value?.let { passwordValue ->
+                        when (val response = repository.login(emailValue, passwordValue)) {
+                            is Resource.Success -> {
+                                navigate(LoginFragmentDirections.actionLoginFragmentToHomepageFragment())
+                            }
+                            is Resource.Failure -> {
+                                response.errorBody?.let { showError(it) }
+                            }
+                            is Resource.Loading -> {
+                                showLoading()
+                            }
+                        }
+                    }
+                }
             }
         }
-    }
-    suspend fun signUp(username: String,email: String,password: String){
-        when(val response = repository.signUp(username,email,password)){
-            is Resource.Success->{
-                _signUpResponse.postValue(response.value!!)
-            }
-            is Resource.Failure->{
-                showError(response.networkError,response.errorCode,response.errorBody)
-            }
-            is Resource.Loading->{
-                //...
+
+    fun signUp() =
+        viewModelScope.launch {
+            if (isValid()) {
+                username.value?.let { usernameValue ->
+                    email.value?.let { emailValue ->
+                        password.value?.let { passwordValue ->
+                            when (val response = repository.signUp(usernameValue,emailValue, passwordValue)) {
+                                is Resource.Success -> {
+                                    navigate(LoginFragmentDirections.actionLoginFragmentToHomepageFragment())
+                                }
+                                is Resource.Failure -> {
+                                    response.errorBody?.let { showError(it) }
+                                }
+                                is Resource.Loading -> {
+                                    showLoading()
+                                }
+                            }
+                        }
+                    }
+                }
             }
         }
+
+    fun goRegister() {
+        navigate(LoginFragmentDirections.actionLoginFragmentToRegisterFragment())
     }
-    suspend fun logout(){
-        repository.logout()
+
+    fun goLogin() {
+        navigate(RegisterFragmentDirections.actionRegisterFragmentToLoginFragment())
     }
+
+
 }

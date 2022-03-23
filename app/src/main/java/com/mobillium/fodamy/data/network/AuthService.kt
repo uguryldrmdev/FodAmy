@@ -6,7 +6,7 @@ import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
 import retrofit2.http.POST
 
-interface AuthService {
+interface AuthService{
 
     @FormUrlEncoded
     @POST("api/auth/login")
@@ -26,4 +26,5 @@ interface AuthService {
     @FormUrlEncoded
     @POST("api/auth/logout")
     suspend fun logout(): ResponseBody
+
 }

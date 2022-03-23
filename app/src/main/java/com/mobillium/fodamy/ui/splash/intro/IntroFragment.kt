@@ -2,32 +2,29 @@ package com.mobillium.fodamy.ui.splash.intro
 
 import  android.content.Context
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.view.ViewGroup.LayoutParams.WRAP_CONTENT
 import android.widget.ImageView
 import android.widget.LinearLayout
 import androidx.core.content.ContextCompat
 import androidx.core.view.get
-import androidx.fragment.app.Fragment
-import androidx.lifecycle.lifecycleScope
-import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.widget.ViewPager2
 import com.mobillium.fodamy.R
 import com.mobillium.fodamy.core.base.BaseFragment
 import com.mobillium.fodamy.core.base.BaseViewModel
 import com.mobillium.fodamy.databinding.FragmentIntroBinding
 import com.mobillium.fodamy.data.model.IntroSlideModel
-import com.mobillium.fodamy.data.preferences.MyPreferences
+import com.mobillium.fodamy.data.preferences.PreferencesManager
 import com.mobillium.fodamy.ui.splash.intro.adapter.IntroSliderAdapter
-import kotlinx.coroutines.launch
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
+@AndroidEntryPoint
+class IntroFragment
+    :BaseFragment<FragmentIntroBinding,IntroViewModel>(R.layout.fragment_intro) {
 
-class IntroFragment() : BaseFragment<BaseViewModel,FragmentIntroBinding>(
-    FragmentIntroBinding::inflate
-) {
-
+    @Inject
+    lateinit var preferencesManager:PreferencesManager
     private lateinit var mItemsAdapter: IntroSliderAdapter
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -61,10 +58,8 @@ class IntroFragment() : BaseFragment<BaseViewModel,FragmentIntroBinding>(
     }
 
     private fun launchHomepage(){
-        lifecycleScope.launch {
-            MyPreferences(requireContext()).isAppOpened = true
-            findNavController().navigate(IntroFragmentDirections.actionIntroFragmentToHomepageFragment())
-        }
+        viewModel.navigate(IntroFragmentDirections.actionIntroFragmentToHomepageFragment())
+        preferencesManager.isAppOpened = true
     }
 
     private fun setSlider(){
@@ -75,7 +70,6 @@ class IntroFragment() : BaseFragment<BaseViewModel,FragmentIntroBinding>(
 
     private fun initializeViewPager(){
         binding.viewPagerIntroSlider.apply {
-
             IntroSliderAdapter().also {
                 mItemsAdapter = it
             }
@@ -158,5 +152,4 @@ class IntroFragment() : BaseFragment<BaseViewModel,FragmentIntroBinding>(
             )
         }
     }
-
 }
