@@ -21,17 +21,18 @@ class IntroSliderAdapter :
     }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         binding = SlideItemIntroBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return MyViewHolder(binding.root)
+        return MyViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         holder.bind(items[position])
     }
-    class MyViewHolder(private val view: View): RecyclerView.ViewHolder(view){
+    class MyViewHolder(private val binding: SlideItemIntroBinding): RecyclerView.ViewHolder(binding.root){
 
-        var itemTitle: TextView = view.text_view_slide_title
-        var itemDescription: TextView = view.text_view_slide_desc
-        var itemImage: ImageView = view.image_view_slide_icon
+        var itemTitle: TextView = binding.textViewSlideTitle
+        var itemDescription: TextView = binding.textViewSlideDesc
+        var itemImage: ImageView = binding.imageViewSlideIcon
+
         fun bind(item: IntroSlideModel) {
             itemTitle.text = item.title
             itemDescription.text = item.description

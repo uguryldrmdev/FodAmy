@@ -20,7 +20,7 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-class NetworkModule {
+class NetworkModule{
 
     private val BASE_URL = "https://fodamy.mobillium.com/"
 
@@ -32,6 +32,7 @@ class NetworkModule {
             .addConverterFactory(GsonConverterFactory.create())
             .build()
     }
+
     private fun getRetrofitClient(): OkHttpClient {
         return OkHttpClient.Builder()
             .addInterceptor { chain ->

@@ -22,42 +22,24 @@ import kotlinx.coroutines.launch
 
 
 @AndroidEntryPoint
-class LoginFragment: BaseFragment<FragmentLoginBinding>(
+class LoginFragment() : BaseFragment<AuthViewModel,FragmentLoginBinding>(
     FragmentLoginBinding::inflate
 ) {
 
     private val viewModel by viewModels<AuthViewModel>()
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initialize()
     }
     private fun initialize(){
-        loginResponse()
         setClicks()
-    }
-
-    private fun loginResponse(){
-        viewModel.loginResponse.observe(viewLifecycleOwner, Observer {
-
-            when (it) {
-                is Resource.Success -> {
-                    lifecycleScope.launch {
-                        viewModel.saveToken(
-                            it.value.token,
-                            requireContext()
-                        )
-                        findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToHomepageFragment())
-                    }
-                }
-                is Resource.Failure ->  Toast.makeText(requireContext(), it.toString(), Toast.LENGTH_SHORT).show()
-            }
-        })
     }
 
     private fun setClicks(){
         binding.buttonLogin.setOnClickListener {
-            login()
+            lifecycleScope.launchWhenResumed {
+                login()
+            }
         }
         binding.textViewHaventAccount.setOnClickListener {
             launchRegister()
@@ -67,13 +49,24 @@ class LoginFragment: BaseFragment<FragmentLoginBinding>(
         }
     }
 
-    private fun login() {
+    private suspend fun login() {
         val email = binding.textInputEmail.text.toString().trim()
         val password = binding.textInputPassword.text.toString().trim()
         viewModel.login(email, password)
+
+        viewModel.loginResponse.observe(viewLifecycleOwner) {
+            if (it.token != null){
+                lifecycleScope.launch {
+                    viewModel.saveToken(it.token,requireContext())
+                    findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToHomepageFragment())
+                }
+            }
+        }
+
     }
 
     private fun launchRegister(){
         findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToRegisterFragment())
     }
+
 }

@@ -9,19 +9,20 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.mobillium.fodamy.core.base.BaseFragment
 import com.mobillium.fodamy.data.network.Resource
+import com.mobillium.fodamy.data.responses.AuthResponse
 import com.mobillium.fodamy.databinding.FragmentRegisterBinding
 import com.mobillium.fodamy.ui.auth.AuthViewModel
+import com.mobillium.fodamy.ui.auth.login.LoginFragmentDirections
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
 
 @AndroidEntryPoint
-class RegisterFragment: BaseFragment<FragmentRegisterBinding>(
+class RegisterFragment : BaseFragment<AuthViewModel,FragmentRegisterBinding>(
     FragmentRegisterBinding::inflate
 ) {
 
     private val viewModel by viewModels<AuthViewModel>()
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initialize()
@@ -32,26 +33,14 @@ class RegisterFragment: BaseFragment<FragmentRegisterBinding>(
     }
 
     private fun signUpResponse(){
-        viewModel.signUpResponse.observe(viewLifecycleOwner, Observer {
 
-            when (it) {
-                is Resource.Success -> {
-                    lifecycleScope.launch {
-                        viewModel.saveToken(
-                            it.value.token,
-                            requireContext()
-                        )
-                        findNavController().navigate(RegisterFragmentDirections.actionRegisterFragmentToHomepageFragment())
-                    }
-                }
-                is Resource.Failure -> Toast.makeText(requireContext(), it.toString(), Toast.LENGTH_SHORT).show()
-            }
-        })
     }
 
     private fun setClicks(){
         binding.buttonSignUp.setOnClickListener {
-            signUp()
+            lifecycleScope.launchWhenResumed {
+                signUp()
+            }
         }
         binding.textViewHaveAccount.setOnClickListener {
             launchLogin()
@@ -61,11 +50,19 @@ class RegisterFragment: BaseFragment<FragmentRegisterBinding>(
         }
     }
 
-    private fun signUp() {
+    private suspend fun signUp(){
         val username = binding.textInputUsername.text.toString().trim()
         val email = binding.textInputEmail.text.toString().trim()
         val password = binding.textInputPassword.text.toString().trim()
         viewModel.signUp(username,email, password)
+        viewModel.signUpResponse.observe(viewLifecycleOwner) {
+            if (it.token != null){
+                lifecycleScope.launch {
+                    viewModel.saveToken(it.token,requireContext())
+                    findNavController().navigate(RegisterFragmentDirections.actionRegisterFragmentToHomepageFragment())
+                }
+            }
+        }
     }
 
     private fun launchLogin(){

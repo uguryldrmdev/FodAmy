@@ -15,6 +15,8 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.widget.ViewPager2
 import com.mobillium.fodamy.R
+import com.mobillium.fodamy.core.base.BaseFragment
+import com.mobillium.fodamy.core.base.BaseViewModel
 import com.mobillium.fodamy.databinding.FragmentIntroBinding
 import com.mobillium.fodamy.data.model.IntroSlideModel
 import com.mobillium.fodamy.data.preferences.MyPreferences
@@ -22,24 +24,17 @@ import com.mobillium.fodamy.ui.splash.intro.adapter.IntroSliderAdapter
 import kotlinx.coroutines.launch
 
 
-class IntroFragment : Fragment() {
+class IntroFragment() : BaseFragment<BaseViewModel,FragmentIntroBinding>(
+    FragmentIntroBinding::inflate
+) {
 
     private lateinit var mItemsAdapter: IntroSliderAdapter
-    private lateinit var binding: FragmentIntroBinding
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initialize()
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        binding = FragmentIntroBinding.inflate(inflater,container,false)
-        return binding.root
-    }
     private fun initialize(){
         setClicks()
         setSlider()
@@ -163,4 +158,5 @@ class IntroFragment : Fragment() {
             )
         }
     }
+
 }

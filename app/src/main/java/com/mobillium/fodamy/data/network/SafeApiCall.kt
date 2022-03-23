@@ -13,6 +13,7 @@ interface SafeApiCall {
                 Resource.Success(apiCall.invoke())
             } catch (throwable: Throwable) {
                 when (throwable) {
+                    //Socet
                     is HttpException -> {
                         Resource.Failure(false, throwable.code(), throwable.response()?.errorBody())
                     }

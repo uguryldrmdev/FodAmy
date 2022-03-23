@@ -7,28 +7,23 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import com.mobillium.fodamy.core.base.BaseFragment
+import com.mobillium.fodamy.core.base.BaseViewModel
 import com.mobillium.fodamy.data.preferences.MyPreferences
 import com.mobillium.fodamy.databinding.FragmentSplashBinding
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 
-class SplashFragment : Fragment() {
+class SplashFragment : BaseFragment<BaseViewModel,FragmentSplashBinding>(
+    FragmentSplashBinding::inflate
+) {
 
-    private lateinit var binding: FragmentSplashBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         launchApp()
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        binding = FragmentSplashBinding.inflate(inflater,container,false)
-        return binding.root
-    }
     private fun launchApp(){
         lifecycleScope.launch {
             delay(2000)
@@ -40,4 +35,5 @@ class SplashFragment : Fragment() {
             }
         }
     }
+
 }

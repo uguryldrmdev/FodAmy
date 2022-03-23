@@ -6,8 +6,6 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import retrofit2.HttpException
 
-abstract class BaseRepository(private val api: BaseApi) : SafeApiCall {
-    suspend fun logout() = safeApiCall {
-        api.logout()
-    }
+abstract class BaseRepository() : SafeApiCall {
+    //...
 }
