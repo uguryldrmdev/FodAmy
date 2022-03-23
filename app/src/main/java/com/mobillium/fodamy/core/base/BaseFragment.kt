@@ -4,15 +4,29 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.LayoutRes
+import androidx.databinding.DataBindingUtil
+import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
-import androidx.viewbinding.ViewBinding
-import java.lang.IllegalArgumentException
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
+import com.mobillium.fodamy.BR
+import com.mobillium.fodamy.ext.findGenericSuperclass
+import kotlinx.coroutines.flow.collect
 
-abstract class BaseFragment<VB : ViewBinding>(
-    private val bindingInflater: (inflater: LayoutInflater) -> VB
-) : Fragment() {
+abstract class BaseFragment<VB : ViewDataBinding, VM : BaseViewModel>(
+    @LayoutRes private val layoutId: Int
+) : Fragment(layoutId) {
 
     private var _binding: VB? = null
+    lateinit var viewModel: VM
+
+    var viewModelClass: Class<VM> =
+        findGenericSuperclass<BaseFragment<VB, VM>>()
+            ?.actualTypeArguments
+            ?.getOrNull(1) as? Class<VM>
+            ?: throw IllegalStateException()
 
     val binding: VB
         get() = _binding as VB
@@ -22,9 +36,34 @@ abstract class BaseFragment<VB : ViewBinding>(
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = bindingInflater.invoke(inflater)
-        if(_binding == null)
+        _binding = DataBindingUtil.inflate(inflater, layoutId, container, false)
+        if (_binding == null)
             throw IllegalArgumentException("Binding cannot be null")
+        binding.setVariable(BR.viewModel, viewModel)
+        binding.executePendingBindings()
         return binding.root
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        viewModel = ViewModelProvider(requireActivity()).get(viewModelClass)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        listenEvents()
+    }
+
+    private fun listenEvents() {
+        viewLifecycleOwner.lifecycleScope.launchWhenCreated {
+            viewModel.eventFlow.collect {
+                when (it) {
+                    is BaseViewEvent.Navigate -> {
+                        findNavController().navigate(it.direction)
+                    }
+                    else -> {}
+                }
+            }
+        }
     }
 }

@@ -5,6 +5,9 @@
 
     <data>
 
+        <variable
+            name="viewModel"
+            type="com.mobillium.fodamy.ui.auth.AuthViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -52,6 +55,7 @@
                 android:fontFamily="@font/nunito_sans_semibold"
                 android:inputType="text|textVisiblePassword"
                 android:letterSpacing="0.025"
+                android:text="@={viewModel.email}"
                 android:textColor="@color/raven"
                 android:textSize="@dimen/text_size_14sp" />
         </com.google.android.material.textfield.TextInputLayout>
@@ -81,6 +85,7 @@
                 android:fontFamily="@font/nunito_sans_semibold"
                 android:inputType="textPassword"
                 android:letterSpacing="0.025"
+                android:text="@={viewModel.password}"
                 android:textColor="@color/raven"
                 android:textSize="@dimen/text_size_14sp" />
         </com.google.android.material.textfield.TextInputLayout>
@@ -93,6 +98,7 @@
             android:background="@drawable/ripple_next_button"
             android:fontFamily="@font/nunito_sans_bold"
             android:letterSpacing="0.025"
+            android:onClick="@{()->viewModel.newLogin()}"
             android:paddingTop="@dimen/padding_20dp"
             android:paddingBottom="@dimen/padding_20dp"
             android:text="@string/login_title"
@@ -142,6 +148,7 @@
             android:fontFamily="@font/nunito_sans_bold"
             android:gravity="start"
             android:letterSpacing="0.025"
+            android:onClick="@{()->viewModel.goRegister()}"
             android:text="@string/sign_up"
             android:textColor="@color/red"
             android:textSize="@dimen/text_size_14sp"
