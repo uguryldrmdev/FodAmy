@@ -1,7 +1,9 @@
 package com.mobillium.fodamy.ui.auth
 
+import android.text.TextUtils
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
+import com.mobillium.fodamy.R
 import com.mobillium.fodamy.core.base.BaseViewModel
 import com.mobillium.fodamy.data.network.Resource
 import com.mobillium.fodamy.data.repository.AuthRepository
@@ -21,9 +23,12 @@ class AuthViewModel @Inject constructor(
     val password = MutableLiveData("")
 
 
-    fun isValid(): Boolean {
-        //...
-        return true
+    private fun isValid(): Boolean {
+        return if (TextUtils.isEmpty(email.value)) {
+            false
+        } else {
+            android.util.Patterns.EMAIL_ADDRESS.matcher(email.value as String).matches()
+        }
     }
 
     fun login() =
@@ -55,7 +60,7 @@ class AuthViewModel @Inject constructor(
                         password.value?.let { passwordValue ->
                             when (val response = repository.signUp(usernameValue,emailValue, passwordValue)) {
                                 is Resource.Success -> {
-                                    navigate(LoginFragmentDirections.actionLoginFragmentToHomepageFragment())
+                                    navigate(RegisterFragmentDirections.actionRegisterFragmentToHomepageFragment())
                                 }
                                 is Resource.Failure -> {
                                     response.errorBody?.let { showError(it) }
@@ -67,6 +72,9 @@ class AuthViewModel @Inject constructor(
                         }
                     }
                 }
+            }
+            else{
+                showToast(R.string.emailValidError)
             }
         }
 

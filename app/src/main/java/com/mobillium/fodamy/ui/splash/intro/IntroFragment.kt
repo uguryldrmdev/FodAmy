@@ -11,7 +11,6 @@ import androidx.core.view.get
 import androidx.viewpager2.widget.ViewPager2
 import com.mobillium.fodamy.R
 import com.mobillium.fodamy.core.base.BaseFragment
-import com.mobillium.fodamy.core.base.BaseViewModel
 import com.mobillium.fodamy.databinding.FragmentIntroBinding
 import com.mobillium.fodamy.data.model.IntroSlideModel
 import com.mobillium.fodamy.data.preferences.PreferencesManager

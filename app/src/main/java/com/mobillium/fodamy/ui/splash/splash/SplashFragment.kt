@@ -1,16 +1,10 @@
 package com.mobillium.fodamy.ui.splash.splash
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.lifecycleScope
-import androidx.navigation.fragment.findNavController
 import com.mobillium.fodamy.R
 import com.mobillium.fodamy.core.base.BaseFragment
-import com.mobillium.fodamy.core.base.BaseViewModel
 import com.mobillium.fodamy.data.preferences.PreferencesManager
 import com.mobillium.fodamy.databinding.FragmentSplashBinding
 import dagger.hilt.android.AndroidEntryPoint

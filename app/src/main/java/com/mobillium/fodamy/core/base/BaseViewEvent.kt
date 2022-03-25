@@ -14,4 +14,6 @@ sealed class BaseViewEvent {
     data class ShowError(val errorBody: ResponseBody) : BaseViewEvent()
 
     object ShowLoading : BaseViewEvent()
+
+    data class ShowToast(val stringID:Int) : BaseViewEvent()
 }

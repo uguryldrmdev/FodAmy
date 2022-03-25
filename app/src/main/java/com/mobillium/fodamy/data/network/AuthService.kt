@@ -23,7 +23,7 @@ interface AuthService{
         @Field("password") password:String
     ):AuthResponse
 
-    @FormUrlEncoded
+
     @POST("api/auth/logout")
     suspend fun logout(): ResponseBody
 

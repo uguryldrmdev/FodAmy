@@ -3,10 +3,6 @@ package com.mobillium.fodamy.ext
 import java.lang.reflect.ParameterizedType
 import java.lang.reflect.Type
 
-/**
- * @author Mert Gölcü
- * @date 23.03.2022
- */
 
 inline fun <reified T> Any.findGenericSuperclass(): ParameterizedType? {
     return javaClass.findGenericSuperclass(T::class.java)

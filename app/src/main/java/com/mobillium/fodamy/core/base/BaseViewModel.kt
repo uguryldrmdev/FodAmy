@@ -30,5 +30,10 @@ abstract class BaseViewModel() : ViewModel() {
     fun showLoading(){
         sendEvent(BaseViewEvent.ShowLoading)
     }
+
+    fun showToast(stringID: Int){
+        sendEvent(BaseViewEvent.ShowToast(stringID))
+    }
+
 }
 

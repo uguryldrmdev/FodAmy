@@ -36,5 +36,12 @@ class AuthRepository @Inject constructor(
             response
         }
 
+    fun isUserLogin(): Boolean{
+        return when(preferencesManager.token){
+            "" -> false
+            else -> true
+        }
+    }
+
 
 }

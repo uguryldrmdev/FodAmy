@@ -7,10 +7,6 @@
         <variable
             name="viewModel"
             type="com.mobillium.fodamy.ui.main.homepage.HomepageViewModel" />
-        <variable
-            name="preferencesManager"
-            type="com.mobillium.fodamy.data.preferences.PreferencesManager" />
-        <import type="android.text.TextUtils"/>
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -24,7 +20,7 @@
             android:id="@+id/text_view_homepage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@={viewModel.token}"
+            android:text="@{viewModel.isUserLogin == true ? @string/logout : @string/login_title}"
             tools:text="token"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -35,7 +31,7 @@
             android:id="@+id/button_auth"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{TextUtils.isEmpty(viewModel.token) ? @string/login_title : @string/logout}"
+            android:text="@{viewModel.isUserLogin == true ? @string/logout : @string/login_title}"
             app:layout_constraintEnd_toEndOf="parent"
             android:onClick="@{() -> viewModel.logout()}"
             app:layout_constraintStart_toStartOf="parent"

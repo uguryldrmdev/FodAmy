@@ -25,7 +25,7 @@ class NetworkModule {
     fun provideRetrofit(preferenceManager: PreferencesManager): Retrofit {
         return Retrofit.Builder()
             .baseUrl(BASE_URL)
-            .client(getRetrofitClient(AuthInterceptor(preferenceManager)))
+            .client(getRetrofitClient(providesAuthInterceptor(preferenceManager)))
             .addConverterFactory(GsonConverterFactory.create())
             .build()
     }

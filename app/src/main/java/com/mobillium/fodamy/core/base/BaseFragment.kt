@@ -13,8 +13,8 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.mobillium.fodamy.BR
+import com.mobillium.fodamy.R
 import com.mobillium.fodamy.ext.findGenericSuperclass
-import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 
 @Suppress("UNCHECKED_CAST")
@@ -41,7 +41,7 @@ abstract class BaseFragment<VB : ViewDataBinding, VM : BaseViewModel>(
     ): View? {
         _binding = DataBindingUtil.inflate(inflater, layoutId, container, false)
         if (_binding == null)
-            throw IllegalArgumentException("Binding cannot be null")
+            throw IllegalArgumentException(getString(R.string.binding_null_error))
         binding.setVariable(BR.viewModel, viewModel)
         binding.executePendingBindings()
         return binding.root
@@ -70,7 +70,9 @@ abstract class BaseFragment<VB : ViewDataBinding, VM : BaseViewModel>(
                     is BaseViewEvent.ShowLoading -> {
                         //Progressbar
                     }
-                    else -> {}
+                    is BaseViewEvent.ShowToast -> {
+                        Toast.makeText(requireContext(), getString(it.stringID),Toast.LENGTH_SHORT).show()
+                    }
                 }
             }
         }

@@ -1,5 +1,5 @@
 package com.mobillium.fodamy.ext
-
+/*
 import android.view.View
 import com.google.android.material.snackbar.Snackbar
 
@@ -19,4 +19,4 @@ fun View.snackbar(message: String, action: (() -> Unit)? = null) {
         }
     }
     snackbar.show()
-}
+}*/
