@@ -12,10 +12,10 @@
         android:layout_height="match_parent">
 
         <ImageView
-            android:id="@+id/imageViewSlideIcon"
-            android:layout_width="@dimen/introIconSize"
-            android:layout_height="@dimen/introIconSize"
-            android:layout_marginTop="@dimen/longMarginXXLarge"
+            android:id="@+id/image_view_slide_icon"
+            android:layout_width="@dimen/intro_icon_size"
+            android:layout_height="@dimen/intro_icon_size"
+            android:layout_marginTop="@dimen/margin_90dp"
             android:scaleType="center"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -23,35 +23,35 @@
             android:src="@drawable/introimagefirst" />
 
         <TextView
-            android:id="@+id/textViewSlideDesc"
+            android:id="@+id/text_view_slide_desc"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/marginMedium"
-            android:layout_marginBottom="@dimen/marginMedium"
+            android:layout_marginTop="@dimen/margin_15dp"
+            android:layout_marginBottom="@dimen/margin_15dp"
             android:fontFamily="@font/nunito_sans_semibold"
             android:gravity="center"
-            android:text="@string/sliderItem1Desc"
+            android:text="@string/slider_item_desc_1"
             android:textColor="@color/raven"
-            android:textSize="@dimen/textXLarge"
+            android:textSize="@dimen/text_size_15sp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/imageViewSlideIcon"
-            app:layout_constraintStart_toStartOf="@+id/imageViewSlideIcon"
-            app:layout_constraintTop_toBottomOf="@+id/textViewSlideTitle"
+            app:layout_constraintEnd_toEndOf="@+id/image_view_slide_icon"
+            app:layout_constraintStart_toStartOf="@+id/image_view_slide_icon"
+            app:layout_constraintTop_toBottomOf="@+id/text_view_slide_title"
             app:layout_constraintVertical_bias="0.0" />
 
         <TextView
-            android:id="@+id/textViewSlideTitle"
+            android:id="@+id/text_view_slide_title"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/longMarginMedium"
+            android:layout_marginTop="@dimen/margin_60dp"
             android:fontFamily="@font/nunito_sans_bold"
             android:gravity="center"
-            android:text="Welcome to Fodamy Network!"
+            android:text="@string/slider_item_title_1"
             android:textColor="@color/cinder"
-            android:textSize="@dimen/textXXLarge"
-            app:layout_constraintEnd_toEndOf="@+id/imageViewSlideIcon"
-            app:layout_constraintStart_toStartOf="@+id/imageViewSlideIcon"
-            app:layout_constraintTop_toBottomOf="@+id/imageViewSlideIcon" />
+            android:textSize="@dimen/text_size_16sp"
+            app:layout_constraintEnd_toEndOf="@+id/image_view_slide_icon"
+            app:layout_constraintStart_toStartOf="@+id/image_view_slide_icon"
+            app:layout_constraintTop_toBottomOf="@+id/image_view_slide_icon" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

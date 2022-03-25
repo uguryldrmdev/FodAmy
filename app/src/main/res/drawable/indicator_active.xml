@@ -4,6 +4,6 @@
 
     <solid android:color="@color/red"/>
     <size
-        android:height="@dimen/introIndicatorsActive"
-        android:width="@dimen/introIndicatorsActive"/>
+        android:height="@dimen/intro_indicator_active_size"
+        android:width="@dimen/intro_indicator_active_size"/>
 </shape>
