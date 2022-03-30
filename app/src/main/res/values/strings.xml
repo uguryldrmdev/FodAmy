@@ -38,4 +38,14 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="home_page_title">Home</string>
+
+
+    <!-- Home -->
+    <string name="editors_choices">EDİTÖR SEÇİMİ</string>
+    <string name="last_added">SON EKLENENLER</string>
+    <string name="recipe_str">Tarif</string>
+    <string name="follower_str">Takipçi</string>
+    <string name="comment_str">Yorum</string>
+    <string name="like_str">Beğeni</string>
+
 </resources>

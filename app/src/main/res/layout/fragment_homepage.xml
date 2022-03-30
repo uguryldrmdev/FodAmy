@@ -6,35 +6,67 @@
     <data>
         <variable
             name="viewModel"
-            type="com.mobillium.fodamy.ui.main.homepage.HomepageViewModel" />
+            type="com.mobillium.fodamy.ui.homepage.HomepageViewModel" />
+        <variable
+            name="fragment"
+            type="com.mobillium.fodamy.ui.homepage.HomepageFragment" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/white"
-        tools:context=".ui.main.homepage.HomepageFragment">
+        android:background="@color/secondaryBackground"
+        tools:context=".ui.homepage.HomepageFragment">
 
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/top_layout"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/margin_50dp"
+            android:background="@color/red"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:id="@+id/text_view_homepage"
-            android:layout_width="wrap_content"
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/margin_30dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="18dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0"
+                app:srcCompat="@drawable/fodamylogoheader" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tab_layout_homepage"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="@{viewModel.isUserLogin == true ? @string/logout : @string/login_title}"
-            tools:text="token"
+            app:tabSelectedTextColor="@color/red"
+            app:tabIndicatorColor="@color/red"
+            app:tabIndicatorFullWidth="false"
+            app:tabTextColor="@color/cinder"
+            app:tabTextAppearance="@style/tab_text"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:divider="@drawable/recycle_view_divider"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/top_layout">
+
+
+
+        </com.google.android.material.tabs.TabLayout>
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/view_pager_homepage"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/button_auth"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@{viewModel.isUserLogin == true ? @string/logout : @string/login_title}"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:onClick="@{() -> viewModel.logout()}"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/text_view_homepage" />
+            app:layout_constraintTop_toBottomOf="@+id/tab_layout_homepage" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

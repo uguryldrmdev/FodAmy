@@ -1,4 +1,4 @@
-package com.mobillium.fodamy.ui.splash.splash
+package com.mobillium.fodamy.ui.intro.splash
 
 import android.os.Bundle
 import android.widget.Toast

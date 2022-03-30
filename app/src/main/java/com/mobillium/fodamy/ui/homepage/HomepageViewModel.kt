@@ -1,4 +1,4 @@
-package com.mobillium.fodamy.ui.main.homepage
+package com.mobillium.fodamy.ui.homepage
 
 
 import androidx.lifecycle.*
@@ -14,8 +14,7 @@ class HomepageViewModel @Inject constructor(
     private val authRepository: AuthRepository
 )  : BaseViewModel(){
 
-
-    val isUserLogin= MutableLiveData(authRepository.isUserLogin())
+    private var isUserLogin: MutableLiveData<Boolean> = MutableLiveData()
 
     fun logout() =
         viewModelScope.launch {
