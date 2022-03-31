@@ -21,10 +21,10 @@ class EditorChoicesFragment : BaseFragment<FragmentEditorChoicesBinding, EditorC
     }
 
     private fun initialize(){
-        initDoctorsRecycleView()
+        initEditorChoicesRecycleView()
         createDataList()
     }
-    private fun initDoctorsRecycleView(){
+    private fun initEditorChoicesRecycleView(){
 
         binding.recycleViewEditorChoices.apply {
             adapter = mEditorChoicesAdapterPaging
