@@ -22,10 +22,16 @@ class EditorChoicesPagingSource @Inject constructor(val repository: EditorChoice
         return try {
             val response = repository.getEditorChoices(page)
             var dataList = ArrayList<Data>()
+            var lastItem = 0
+            var currenPage = 1
+            var perPage = 0
 
             when(response) {
                 is Resource.Success -> {
                     dataList = response.value.data
+                    lastItem = response.value.pagination.last_item
+                    currenPage = response.value.pagination.current_page
+                    perPage = response.value.pagination.per_page
                 }
                 is Resource.Failure -> {
                     response.errorBody
@@ -37,7 +43,7 @@ class EditorChoicesPagingSource @Inject constructor(val repository: EditorChoice
                 LoadResult.Page(
                     data = dataList,
                     prevKey = if (page == 1) null else page-1,
-                    nextKey = if (dataList.isEmpty()) null else page+1,
+                    nextKey = if ((lastItem/currenPage) <= perPage) null else page+1,
                 )
         }catch (e:Exception){
             LoadResult.Error(e)

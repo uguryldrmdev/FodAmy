@@ -20,7 +20,6 @@ class EditorChoicesAdapterPaging : PagingDataAdapter<Data, EditorChoicesAdapterP
             override fun areContentsTheSame(oldItem: Data, newItem: Data): Boolean {
                 return oldItem == newItem
             }
-
         }
     }
 
@@ -34,4 +33,5 @@ class EditorChoicesAdapterPaging : PagingDataAdapter<Data, EditorChoicesAdapterP
         val binding = ItemEditorChoicesBinding.inflate(LayoutInflater.from(parent.context),parent,false)
         return MyViewHolder(binding)
     }
+
 }

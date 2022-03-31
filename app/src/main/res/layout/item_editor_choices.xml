@@ -60,7 +60,7 @@
                 android:letterSpacing="0.025"
                 tools:text="3 Tarif 0 Takipçi"
                 android:textColor="@color/raven"
-                android:text="@{data.user.recipeCount + @string/recipe_str+ data.user.followingCount + @string/follower_str}"
+                android:text='@{data.user.recipeCount + " " + @string/recipe_str + " " + data.user.followingCount + " " + @string/follower_str}'
                 android:textSize="@dimen/text_size_13sp"
                 android:fontFamily="@font/nunito_sans_semibold"
                 app:layout_constraintStart_toStartOf="@+id/text_view_username"
@@ -166,7 +166,7 @@
                 android:letterSpacing="0.025"
                 android:textColor="@color/raven"
                 android:textSize="@dimen/text_size_13sp"
-                android:text="@{data.comment_count + @string/comment_str + data.like_count + @string/like_str}"
+                android:text='@{data.comment_count + " " + @string/comment_str + " " + data.like_count + " " +@string/like_str}'
                 app:layout_constraintBottom_toBottomOf="parent"
                 android:layout_marginBottom="@dimen/margin_10dp"
                 app:layout_constraintStart_toStartOf="parent"
