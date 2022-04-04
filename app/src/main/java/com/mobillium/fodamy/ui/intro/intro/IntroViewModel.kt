@@ -1,4 +1,4 @@
-package com.mobillium.fodamy.ui.splash.intro
+package com.mobillium.fodamy.ui.intro.intro
 
 import com.mobillium.fodamy.core.base.BaseViewModel
 

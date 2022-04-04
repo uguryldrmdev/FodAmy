@@ -1,6 +1,6 @@
-package com.mobillium.fodamy.data.network
+package com.mobillium.fodamy.data.network.auth
 
-import com.mobillium.fodamy.data.responses.AuthResponse
+import com.mobillium.fodamy.data.responses.auth.AuthResponse
 import okhttp3.ResponseBody
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
@@ -13,7 +13,7 @@ interface AuthService{
     suspend fun login(
         @Field("username") email:String,
         @Field("password") password:String
-    ):AuthResponse
+    ): AuthResponse
 
     @FormUrlEncoded
     @POST("api/auth/register")
@@ -21,7 +21,7 @@ interface AuthService{
         @Field("username") username:String,
         @Field("email") email:String,
         @Field("password") password:String
-    ):AuthResponse
+    ): AuthResponse
 
 
     @POST("api/auth/logout")

@@ -1,4 +1,4 @@
-package com.mobillium.fodamy.data.responses
+package com.mobillium.fodamy.data.responses.auth
 
 
 data class AuthResponse(

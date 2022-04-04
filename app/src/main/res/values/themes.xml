@@ -7,8 +7,10 @@
 
         <item name="android:ambientShadowAlpha">0</item>
         <item name="android:spotShadowAlpha">0.12</item>
-
-        <item name="android:windowFullscreen">true</item>
+        <item name="android:statusBarColor">@color/red</item>
+    </style>
+    <style name="tab_text" parent="@android:style/TextAppearance.Widget.TabWidget">
+        <item name="android:fontFamily">@font/nunito_sans_bold</item>
     </style>
         <!-- Customize your theme here. -->
     <style name="AnimationsForDialog">
@@ -28,4 +30,5 @@
         <item name="hintTextColor">@color/red</item>
         <item name="boxStrokeWidth">2dp</item>
     </style>
+
 </resources>

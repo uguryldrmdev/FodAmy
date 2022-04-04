@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/red"
-        tools:context=".ui.splash.splash.SplashFragment">
+        tools:context=".ui.intro.splash.SplashFragment">
 
         <ImageView
             android:id="@+id/image_view_logo"

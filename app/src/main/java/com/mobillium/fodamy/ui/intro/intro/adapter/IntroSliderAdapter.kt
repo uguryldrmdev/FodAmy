@@ -1,4 +1,4 @@
-package com.mobillium.fodamy.ui.splash.intro.adapter
+package com.mobillium.fodamy.ui.intro.intro.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

@@ -1,7 +1,7 @@
 package com.mobillium.fodamy.data.repository
 
 import com.mobillium.fodamy.core.base.BaseRepository
-import com.mobillium.fodamy.data.network.AuthService
+import com.mobillium.fodamy.data.network.auth.AuthService
 import com.mobillium.fodamy.data.preferences.PreferencesManager
 import javax.inject.Inject
 
@@ -37,11 +37,6 @@ class AuthRepository @Inject constructor(
         }
 
     fun isUserLogin(): Boolean{
-        return when(preferencesManager.token){
-            "" -> false
-            else -> true
-        }
+        return preferencesManager.token.isNotEmpty()
     }
-
-
 }

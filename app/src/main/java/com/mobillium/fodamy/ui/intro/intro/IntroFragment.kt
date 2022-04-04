@@ -1,4 +1,4 @@
-package com.mobillium.fodamy.ui.splash.intro
+package com.mobillium.fodamy.ui.intro.intro
 
 import  android.content.Context
 import android.os.Bundle
@@ -14,7 +14,7 @@ import com.mobillium.fodamy.core.base.BaseFragment
 import com.mobillium.fodamy.databinding.FragmentIntroBinding
 import com.mobillium.fodamy.data.model.IntroSlideModel
 import com.mobillium.fodamy.data.preferences.PreferencesManager
-import com.mobillium.fodamy.ui.splash.intro.adapter.IntroSliderAdapter
+import com.mobillium.fodamy.ui.intro.intro.adapter.IntroSliderAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 

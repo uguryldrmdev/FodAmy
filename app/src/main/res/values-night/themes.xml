@@ -7,10 +7,7 @@
 
         <item name="android:ambientShadowAlpha">0</item>
         <item name="android:spotShadowAlpha">0.12</item>
-
-
-
-        <item name="android:windowFullscreen">true</item>
+        <item name="android:statusBarColor">@color/red</item>
     </style>
 
     <style name="AnimationsForDialog">
