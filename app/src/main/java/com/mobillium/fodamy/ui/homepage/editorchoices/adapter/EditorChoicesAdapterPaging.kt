@@ -6,18 +6,18 @@ import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.mobillium.fodamy.BR
-import com.mobillium.fodamy.data.responses.editorchoices.Data
+import com.mobillium.fodamy.data.responses.editorchoices.Recipe
 import com.mobillium.fodamy.databinding.ItemEditorChoicesBinding
 
-class EditorChoicesAdapterPaging : PagingDataAdapter<Data, EditorChoicesAdapterPaging.MyViewHolder>(DIFF_UTIL) {
+class EditorChoicesAdapterPaging : PagingDataAdapter<Recipe, EditorChoicesAdapterPaging.MyViewHolder>(DIFF_UTIL) {
 
     companion object{
-        val DIFF_UTIL = object : DiffUtil.ItemCallback<Data>(){
-            override fun areItemsTheSame(oldItem: Data, newItem: Data): Boolean {
+        val DIFF_UTIL = object : DiffUtil.ItemCallback<Recipe>(){
+            override fun areItemsTheSame(oldItem: Recipe, newItem: Recipe): Boolean {
                 return oldItem.id == newItem.id
             }
 
-            override fun areContentsTheSame(oldItem: Data, newItem: Data): Boolean {
+            override fun areContentsTheSame(oldItem: Recipe, newItem: Recipe): Boolean {
                 return oldItem == newItem
             }
         }
@@ -26,7 +26,7 @@ class EditorChoicesAdapterPaging : PagingDataAdapter<Data, EditorChoicesAdapterP
     inner class MyViewHolder(val viewDataBinding: ItemEditorChoicesBinding): RecyclerView.ViewHolder(viewDataBinding.root)
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        holder.viewDataBinding.setVariable(BR.data,getItem(position))
+        holder.viewDataBinding.setVariable(BR.recipe,getItem(position))
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
