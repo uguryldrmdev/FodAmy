@@ -5,7 +5,6 @@ import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.mobillium.fodamy.R
 import com.mobillium.fodamy.core.base.BaseFragment
-import com.mobillium.fodamy.data.responses.editorchoices.Data
 import com.mobillium.fodamy.databinding.FragmentEditorChoicesBinding
 import com.mobillium.fodamy.ext.setDivider
 import com.mobillium.fodamy.ui.homepage.editorchoices.adapter.EditorChoicesAdapterPaging

@@ -2,9 +2,11 @@ package com.mobillium.fodamy.di
 
 import com.mobillium.fodamy.data.network.auth.AuthService
 import com.mobillium.fodamy.data.network.editorchoices.EditorChoicesService
+import com.mobillium.fodamy.data.network.lastadded.LastAddedService
 import com.mobillium.fodamy.data.preferences.PreferencesManager
 import com.mobillium.fodamy.data.repository.AuthRepository
 import com.mobillium.fodamy.data.repository.EditorChoiceRepository
+import com.mobillium.fodamy.data.repository.LastAddedRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -54,6 +56,12 @@ class NetworkModule {
     @Inject
     fun provideEditorChoicesApi(retrofit: Retrofit): EditorChoiceRepository {
         return EditorChoiceRepository(retrofit.create(EditorChoicesService::class.java))
+    }
+
+    @Provides
+    @Inject
+    fun provideLastAddedApi(retrofit: Retrofit): LastAddedRepository {
+        return LastAddedRepository(retrofit.create(LastAddedService::class.java))
     }
 }
 

@@ -1,6 +1,10 @@
 package com.mobillium.fodamy.data.responses.editorchoices
 
+import com.google.gson.annotations.SerializedName
+
 data class EditorChoicesResponse(
-    val `data`: ArrayList<Data>,
+    @SerializedName("data")
+    val recipe: ArrayList<Recipe>,
+
     val pagination: Pagination
 )
