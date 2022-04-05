@@ -9,7 +9,8 @@ import com.mobillium.fodamy.BR
 import com.mobillium.fodamy.data.responses.editorchoices.Recipe
 import com.mobillium.fodamy.databinding.ItemEditorChoicesBinding
 
-class LastAddedAdapterPaging : PagingDataAdapter<Recipe, LastAddedAdapterPaging.MyViewHolder>(DIFF_UTIL) {
+class LastAddedAdapterPaging(private val onRecipeSelectListener: (recipe: Recipe,isUserClicked: Boolean ) -> Unit)
+    : PagingDataAdapter<Recipe, LastAddedAdapterPaging.MyViewHolder>(DIFF_UTIL) {
 
     companion object{
         val DIFF_UTIL = object : DiffUtil.ItemCallback<Recipe>(){
@@ -23,10 +24,9 @@ class LastAddedAdapterPaging : PagingDataAdapter<Recipe, LastAddedAdapterPaging.
         }
     }
 
-    inner class MyViewHolder(val viewDataBinding: ItemEditorChoicesBinding): RecyclerView.ViewHolder(viewDataBinding.root)
-
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         holder.viewDataBinding.setVariable(BR.recipe,getItem(position))
+        holder.bind(getItem(position),onRecipeSelectListener)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
@@ -34,4 +34,20 @@ class LastAddedAdapterPaging : PagingDataAdapter<Recipe, LastAddedAdapterPaging.
         return MyViewHolder(binding)
     }
 
+    inner class MyViewHolder(val viewDataBinding: ItemEditorChoicesBinding): RecyclerView.ViewHolder(viewDataBinding.root){
+
+        fun bind(recipe: Recipe?, onRecipeSelectListener: (recipe: Recipe, isUserClicked: Boolean) -> Unit) {
+
+            viewDataBinding.clRecipeInfo.setOnClickListener {
+                if (recipe != null) {
+                    onRecipeSelectListener.invoke(recipe,false)
+                }
+            }
+            viewDataBinding.clUserInfo.setOnClickListener {
+                if (recipe != null) {
+                    onRecipeSelectListener.invoke(recipe,true)
+                }
+            }
+        }
+    }
 }

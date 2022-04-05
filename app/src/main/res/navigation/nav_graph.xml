@@ -88,7 +88,16 @@
             app:exitAnim="@android:anim/fade_out"
             app:popUpToInclusive="true"/>
     </fragment>
-
+    <fragment
+        android:id="@+id/likesFragment"
+        android:name="com.mobillium.fodamy.ui.likes.LikesFragment"
+        android:label="LikesFragment"
+        tools:layout="@layout/fragment_likes"/>
+    <fragment
+        android:id="@+id/recipesFragment"
+        android:name="com.mobillium.fodamy.ui.recipes.RecipesFragment"
+        android:label="RecipesFragment"
+        tools:layout="@layout/fragment_recipes"/>
 
 
 </navigation>
