@@ -13,6 +13,7 @@ import com.mobillium.fodamy.data.network.lastadded.LastAddedPagingSource
 import com.mobillium.fodamy.data.repository.AuthRepository
 import com.mobillium.fodamy.data.repository.EditorChoiceRepository
 import com.mobillium.fodamy.data.repository.LastAddedRepository
+import com.mobillium.fodamy.data.responses.editorchoices.Recipe
 import com.mobillium.fodamy.ui.homepage.HomepageFragmentDirections
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -27,5 +28,9 @@ class LastAddedViewModel @Inject constructor(
         Pager(PagingConfig(pageSize = 1)){
             LastAddedPagingSource(repository)
         }.liveData.cachedIn(viewModelScope)
+
+    fun getRecipe(recipe: Recipe){
+       //..
+    }
 
 }
