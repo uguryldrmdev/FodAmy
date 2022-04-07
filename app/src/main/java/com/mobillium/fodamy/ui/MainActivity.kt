@@ -3,7 +3,10 @@ package com.mobillium.fodamy.ui
 import android.content.res.ColorStateList
 import android.os.Bundle
 import android.view.View
+import android.view.View.GONE
+import android.view.View.VISIBLE
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.mobillium.fodamy.R
@@ -22,16 +25,26 @@ class MainActivity : AppCompatActivity() {
         setBottomNav()
     }
 
+
     private fun setBottomNav(){
         val navController = findNavController(R.id.fragment_container_view)
         binding.bottomNavigationView.setupWithNavController(navController)
+
         navController.addOnDestinationChangedListener { _, destination, _ ->
-            if(destination.id == R.id.splashFragment) {
-                binding.bottomNavigationView.visibility = View.GONE
-            } else {
-                binding.bottomNavigationView.visibility = View.VISIBLE
+            when(destination.id){
+                R.id.splashFragment,
+                R.id.introFragment,
+                R.id.loginFragment,
+                R.id.registerFragment -> {
+                    binding.bottomNavigationView.visibility = GONE
+                }
+                else ->{
+                    binding.bottomNavigationView.visibility = VISIBLE
+                }
             }
         }
+
+
     }
     private fun setBinding(){
         binding = ActivityMainBinding.inflate(layoutInflater)

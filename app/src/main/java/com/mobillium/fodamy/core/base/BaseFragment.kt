@@ -68,7 +68,7 @@ abstract class BaseFragment<VB : ViewDataBinding, VM : BaseViewModel>(
                         Toast.makeText(requireContext(), it.errorBody.toString(), Toast.LENGTH_SHORT).show()
                     }
                     is BaseViewEvent.ShowLoading -> {
-                        //Progressbar
+                        //...
                     }
                     is BaseViewEvent.ShowToast -> {
                         Toast.makeText(requireContext(), getString(it.stringID),Toast.LENGTH_SHORT).show()

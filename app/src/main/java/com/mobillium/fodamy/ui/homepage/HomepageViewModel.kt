@@ -14,7 +14,7 @@ class HomepageViewModel @Inject constructor(
     private val authRepository: AuthRepository
 )  : BaseViewModel(){
 
-    private var isUserLogin: MutableLiveData<Boolean> = MutableLiveData()
+    var isUserLogin: MutableLiveData<Boolean> = MutableLiveData(authRepository.isUserLogin())
 
     fun logout() =
         viewModelScope.launch {

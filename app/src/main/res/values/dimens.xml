@@ -15,19 +15,29 @@
     <dimen name="radius_24dp">24dp</dimen>
 
 
+    <dimen name="margin_2dp">2dp</dimen>
     <dimen name="margin_5dp">5dp</dimen>
+    <dimen name="margin_6dp">6dp</dimen>
+    <dimen name="margin_7dp">7dp</dimen>
+    <dimen name="margin_8dp">8dp</dimen>
     <dimen name="margin_10dp">10dp</dimen>
     <dimen name="margin_15dp">15dp</dimen>
     <dimen name="margin_20dp">20dp</dimen>
+    <dimen name="margin_24dp">24dp</dimen>
     <dimen name="margin_25dp">25dp</dimen>
     <dimen name="margin_30dp">30dp</dimen>
 
     <dimen name="margin_40dp">40dp</dimen>
+    <dimen name="margin_44dp">44dp</dimen>
     <dimen name="margin_50dp">50dp</dimen>
     <dimen name="margin_60dp">60dp</dimen>
     <dimen name="margin_70dp">70dp</dimen>
     <dimen name="margin_80dp">80dp</dimen>
     <dimen name="margin_90dp">90dp</dimen>
+    <dimen name="margin_150dp">150dp</dimen>
+    <dimen name="margin_195dp">195dp</dimen>
+    <dimen name="margin_300dp">300dp</dimen>
+
 
     <dimen name="padding_5dp">5dp</dimen>
     <dimen name="padding_10dp">10dp</dimen>

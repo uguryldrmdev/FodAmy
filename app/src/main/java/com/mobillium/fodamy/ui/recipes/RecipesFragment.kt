@@ -12,8 +12,9 @@ import com.mobillium.fodamy.core.base.BaseFragment
 import com.mobillium.fodamy.databinding.FragmentRecipesBinding
 import com.mobillium.fodamy.ext.setDivider
 import com.mobillium.fodamy.ui.homepage.lastadded.adapter.LastAddedAdapterPaging
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class RecipesFragment : BaseFragment<FragmentRecipesBinding,RecipesViewModel>(R.layout.fragment_recipes){
 
     private lateinit var mLastAddedAdapterPaging : LastAddedAdapterPaging

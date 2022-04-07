@@ -48,4 +48,8 @@
     <string name="comment_str">Yorum</string>
     <string name="like_str">Beğeni</string>
 
+
+    <!-- Likes -->
+    <string name="see_all">TÜMÜNÜ GÖR</string>
+
 </resources>
