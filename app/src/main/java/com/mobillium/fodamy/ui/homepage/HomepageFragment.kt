@@ -14,7 +14,7 @@ class HomepageFragment : BaseFragment<FragmentHomepageBinding, HomepageViewModel
 
     private lateinit var viewPagerAdapter: HomepageAdapter
     private var tabItems = ArrayList<String>()
-    var isUserLogin: Boolean?=null
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
       initialize()

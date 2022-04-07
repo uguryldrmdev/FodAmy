@@ -20,9 +20,12 @@ fun loadImageCircle(view: ImageView, url: String?){
 fun loadImage(view: ImageView, url: String?){
     Glide.with(view)
         .load(url)
+        .placeholder(R.color.heater)
+        .error(R.drawable.introimagefirst)
+        .fallback(R.drawable.introimagefirst)
         .into(view)
 }
 @BindingAdapter("visibility")
 fun setVisibility(view: View, value: Boolean) {
-    view.setVisibility(if (value) View.VISIBLE else View.GONE)
+    view.visibility = if (value) View.VISIBLE else View.GONE
 }
