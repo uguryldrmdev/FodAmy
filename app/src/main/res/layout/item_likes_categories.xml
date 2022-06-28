@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+        <import type="com.mobillium.fodamy.data.responses.likes.Category"/>
+        <variable
+            name="category"
+            type="Category" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cl_item_category"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/secondaryBackground">
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl_category_info"
+            android:background="@color/white"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/margin_44dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+
+            <ImageView
+                android:id="@+id/image_view_category_photo"
+                android:layout_width="@dimen/margin_24dp"
+                android:layout_height="@dimen/margin_24dp"
+                android:layout_marginStart="@dimen/margin_15dp"
+                app:load="@{category.image.url}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:srcCompat="@drawable/introimagefourth" />
+
+            <TextView
+                android:id="@+id/text_view_category_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_5dp"
+                android:fontFamily="@font/nunito_sans_bold"
+                android:letterSpacing="0.025"
+                android:text="@{category.name}"
+                android:textColor="@color/cinder"
+                android:textSize="@dimen/text_size_13sp"
+                app:layout_constraintBottom_toBottomOf="@+id/image_view_category_photo"
+                app:layout_constraintStart_toEndOf="@+id/image_view_category_photo"
+                app:layout_constraintTop_toTopOf="@+id/image_view_category_photo"
+                tools:text="Category Name" />
+
+            <TextView
+                android:id="@+id/text_view_see_all"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/see_all"
+                android:textColor="@color/red"
+                android:fontFamily="@font/nunito_sans_bold"
+                android:letterSpacing="0.025"
+                android:layout_marginEnd="@dimen/margin_15dp"
+                app:visibility="@{!category.recipes.empty}"
+                android:textSize="@dimen/text_size_12sp"
+                app:layout_constraintBottom_toBottomOf="@+id/text_view_category_name"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/text_view_category_name" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl_recipe_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="1dp"
+            android:background="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cl_category_info">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycle_view_recipes"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
